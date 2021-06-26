@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 23:02:13 by lrandria          #+#    #+#             */
-/*   Updated: 2021/06/23 20:26:29 by lrandria         ###   ########.fr       */
+/*   Updated: 2021/06/26 02:29:29 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,6 @@ size_t	ft_strlen(const char *s)
 
 	i = 0;
 	while (s[i])
-		i++;
-	return (i);
-}
-
-size_t	ft_strclen(char *buf, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (buf[i] != 0 && buf[i] != c)
 		i++;
 	return (i);
 }
@@ -109,20 +99,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	new_s[i] = '\0';
 	return (new_s);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i++;
-	}
-	if (s[i] == (char)c)
-		return ((char *)s + i);
-	return (0);
 }

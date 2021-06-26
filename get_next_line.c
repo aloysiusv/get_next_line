@@ -6,13 +6,37 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 23:02:05 by lrandria          #+#    #+#             */
-/*   Updated: 2021/06/23 20:39:17 by lrandria         ###   ########.fr       */
+/*   Updated: 2021/06/26 02:56:28 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	read_file(int fd, char **stock)
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i++;
+	}
+	return (0);
+}
+
+size_t	ft_strclen(char *buf, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (buf[i] != 0 && buf[i] != c)
+		i++;
+	return (i);
+}
+
+static int	read_file(int fd, char **stock)
 {
 	char	buf[BUFFER_SIZE + 1];
 	int		nbytes;
@@ -41,7 +65,7 @@ int	read_file(int fd, char **stock)
 	return (1);
 }
 
-int	create_one_line(char **line, char **stock)
+static int	create_one_line(char **line, char **stock)
 {
 	char	*tmp;
 	size_t	line_size;
@@ -72,7 +96,7 @@ int	get_next_line(int fd, char **line)
 {
 	static char		*stock;
 	int				read_status;
-	
+
 	read_status = read_file(fd, &stock);
 	if (read_status == -1)
 		return (-1);
@@ -85,34 +109,3 @@ int	get_next_line(int fd, char **line)
 	}
 	return (create_one_line(line, &stock));
 }
-
-// #include <stdio.h>
-// #include <fcntl.h>
-
-// int	main(int ac, char *av[])
-// {
-// 	int	fd;
-// 	char *line;
-// 	int	ret_gnl;
-
-// 	if (ac != 2)
-// 		return (1);
-// 	fd = open(av[1], O_RDONLY);
-// 	line = 0;
-// 	ret_gnl = 1;
-// 	while (ret_gnl != 0)
-// 	{
-// 		ret_gnl = get_next_line(fd, &line);
-// 		if (ret_gnl == -1)
-// 			return (1);
-// 		if (ret_gnl == 0)
-// 		{
-// 			printf("%d\n%s\n", ret_gnl, line);
-// 			free(line);
-// 			return (0);
-// 		}
-// 		printf("%d\n%s\n", ret_gnl, line);
-// 		free(line);
-// 	}
-// 	return (0);
-// }
