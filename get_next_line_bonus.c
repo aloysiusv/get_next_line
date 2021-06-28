@@ -94,18 +94,18 @@ static int	create_one_line(char **line, char **stock)
 
 int	get_next_line(int fd, char **line)
 {
-	static char		*stock;
+	static char		*stock[12000];
 	int				read_status;
 
-	read_status = read_file(fd, &stock);
+	read_status = read_file(fd, &stock[fd]);
 	if (read_status == -1)
 		return (-1);
-	if (read_status == 0 && stock == 0)
+	if (read_status == 0 && stock[fd] == 0)
 	{
 		*line = ft_strdup("");
 		if (*line == NULL)
 			return (-1);
 		return (0);
 	}
-	return (create_one_line(line, &stock));
+	return (create_one_line(line, &stock[fd]));
 }
