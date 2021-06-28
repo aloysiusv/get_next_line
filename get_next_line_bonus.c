@@ -94,7 +94,7 @@ static int	create_one_line(char **line, char **stock)
 
 int	get_next_line(int fd, char **line)
 {
-	static char		*stock[12000];
+	static char		*stock[65536];
 	int				read_status;
 
 	read_status = read_file(fd, &stock[fd]);
