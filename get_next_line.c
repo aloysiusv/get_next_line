@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 23:02:05 by lrandria          #+#    #+#             */
-/*   Updated: 2021/06/26 02:56:28 by lrandria         ###   ########.fr       */
+/*   Updated: 2021/06/29 17:24:56 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	get_next_line(int fd, char **line)
 	int				read_status;
 
 	read_status = read_file(fd, &stock);
-	if (read_status == -1)
+	if (read_status == -1 || !line)
 		return (-1);
 	if (read_status == 0 && stock == 0)
 	{
